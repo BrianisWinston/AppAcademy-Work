@@ -40,14 +40,14 @@ def larger_than_russia
     FROM
       countries
     WHERE
-      population > (
-        SELECT
-          population
-        FROM
-          countries
-        WHERE
-          name = 'Russia'
-      )
+     population > (
+      SELECT
+        population
+      FROM
+        countries
+      WHERE
+        name = 'Russia'
+     )
   SQL
 end
 
@@ -80,18 +80,21 @@ def neighbors_of_certain_b_countries
     FROM
       countries
     WHERE
-      continent = (SELECT
-        continent
-      FROM
-        countries
-      WHERE
-        name = 'Belgium') OR
-      continent = (SELECT
-        continent
-      FROM
-        countries
-      WHERE
-        name = 'Belize')
+      continent = (
+        SELECT
+          continent
+        FROM
+          countries
+        WHERE
+          name = 'Belize'
+      ) OR
+      continent = (
+        SELECT
+          continent
+        FROM
+          countries
+        WHERE
+          name = 'Belgium')
   SQL
 end
 
@@ -129,21 +132,8 @@ def sparse_continents
   # population.
   # Hint: Sometimes rewording the problem can help you see the solution.
   execute(<<-SQL)
-    -- SELECT
-    --   name, continent, population
-    -- FROM
-    --   countries
-    -- WHERE
-    --   continent = ALL (SELECT
-    --     continent
-    --   FROM
-    --     countries
-    --   WHERE
-    --     population < 25000000)
     SELECT
-      name,
-      continent,
-      population
+      name, continent, population
     FROM
       countries
     WHERE
@@ -153,7 +143,7 @@ def sparse_continents
         FROM
           countries
         WHERE
-          population >= 25000000
+          population > 25000000
       )
   SQL
 end

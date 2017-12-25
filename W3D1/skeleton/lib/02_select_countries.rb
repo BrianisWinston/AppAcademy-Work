@@ -39,7 +39,7 @@ def high_population_gdps
   # of at least 200 million.
   execute(<<-SQL)
     SELECT
-      name, gdp/population
+     name, gdp/population
     FROM
       countries
     WHERE
@@ -68,8 +68,7 @@ def name_and_population
       name, population
     FROM
       countries
-    WHERE
-      name IN ('France', 'Germany', 'Italy')
+    WHERE name IN ('France', 'Germany', 'Italy')
   SQL
 end
 

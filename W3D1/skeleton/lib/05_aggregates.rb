@@ -45,7 +45,7 @@ def area_count
   # How many countries have an area of more than 1,000,000?
   execute(<<-SQL)
     SELECT
-      COUNT(*)
+      COUNT(name)
     FROM
       countries
     WHERE
@@ -61,7 +61,7 @@ def group_population
     FROM
       countries
     WHERE
-      name = 'France' OR name = 'Germany' OR name = 'Spain'
+      name IN ('France', 'Germany', 'Spain')
   SQL
 end
 
@@ -69,11 +69,11 @@ def country_counts
   # For each continent show the continent and number of countries.
   execute(<<-SQL)
     SELECT
-      continent, COUNT(*)
+      continent, count(name)
     FROM
       countries
     GROUP BY
-      continent;
+      continent
   SQL
 end
 
@@ -82,13 +82,13 @@ def populous_country_counts
   # populations of at least 10 million.
   execute(<<-SQL)
     SELECT
-      continent, COUNT(*)
+      continent, COUNT(name)
     FROM
       countries
     WHERE
       population >= 10000000
     GROUP BY
-      continent;
+      continent
   SQL
 end
 
@@ -99,9 +99,9 @@ def populous_continents
       continent
     FROM
       countries
-    WHERE
-      population >= 100000000
     GROUP BY
-      continent;
+      continent
+    HAVING
+      SUM(population) > 100000000
   SQL
 end

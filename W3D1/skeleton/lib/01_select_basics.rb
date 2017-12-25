@@ -79,7 +79,7 @@ def starts_with_g
     FROM
       countries
     WHERE
-      name LIKE 'G%'
+      name LIKE ('G%')
   SQL
 end
 
@@ -88,11 +88,11 @@ def just_the_right_size
   # with an area between 200,000 and 250,000.
   # BETWEEN allows range checking - note that it is inclusive.
   execute(<<-SQL)
-    SELECT
+    SELECT 
       name, area/1000
     FROM
       countries
     WHERE
-      area BETWEEN 200000 AND 250000;
+      area > 200000 AND area < 250000
   SQL
 end
