@@ -1,0 +1,11 @@
+/* PHASE 6: Sidebar */
+.profile-picture {
+  display: block;
+  position: relative;
+  margin-top: -100px;
+}
+
+.side-title {
+  font-style: bold;
+  padding: 5px;
+}
