@@ -45,11 +45,11 @@ def ford_films
     FROM
       movies
     JOIN
-      castings ON movies.id = castings.movie_id
+      castings ON castings.movie_id = movies.id
     JOIN
-      actors ON castings.actor_id = actors.id
+      actors ON actors.id = castings.actor_id
     WHERE
-      actors.name = 'Harrison Ford'
+      name = 'Harrison Ford'
   SQL
 end
 
@@ -145,18 +145,19 @@ def prolific_actors
     SELECT
       name
     FROM
-      movies
+      actors
     JOIN
-      castings ON movies.id = castings.movie_id
+      castings ON actors.id = castings.actor_id
     JOIN
-      actors ON castings.actor_id = actors.id
+      movies on movies.id = castings.movie_id
     WHERE
       ord = 1
     GROUP BY
       actors.name
     HAVING
       COUNT(*) >= 15
-    ORDER BY name;
+    ORDER BY
+      actors.name;
   SQL
 end
 
