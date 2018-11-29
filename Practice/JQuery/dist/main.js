@@ -93,7 +93,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("window.$l = function idk(hello) {\n  let elements = document.querySelectorAll(`${hello}`);\n  return Array.from(elements);\n};\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("window.$l = function idk(hello) {\n  let elements = document.querySelectorAll(`${hello}`).innerHTML;\n  return Array.from(elements);\n};\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 
