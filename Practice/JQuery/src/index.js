@@ -6,8 +6,9 @@ window.$l = function (hello) {
     let newEls = new DOMNodeCollections(elements);
     return newEls;
   } else {
-    let elements = document.querySelector(`${hello}`);
+    let elements = document.querySelectorAll(`${hello}`);
     let converted = Array.from(elements);
-    return converted
+    let newEls = new DOMNodeCollections(converted);
+    return newEls;
   }
 };
