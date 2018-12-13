@@ -9,13 +9,18 @@ class NodeCollection {
 
   html(string) {
     if (string !== undefined) {
-      let newArr = this.arrayOfEls.map( el => {
+      this.arrayOfEls.map( el => {
         el.innerHTML = string;
       });
-      return newArr;
+      return this.arrayOfEls;
     } else {
       return this.arrayOfEls[0].innerHTML;
     }
+  }
+
+  empty() {
+    let newArr = this.arrayOfEls.map( el => el.innerHTML = "");
+    return newArr;
   }
 };
 
