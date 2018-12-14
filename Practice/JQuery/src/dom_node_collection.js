@@ -32,6 +32,12 @@ class NodeCollection {
       return newArr;
     }
   }
+
+  attr(str) {
+    if (arguments.length === 1) {
+      return this.arrayOfEls[0].getAttribute(`${str}`);
+    }
+  }
 };
 
 module.exports = NodeCollection;
