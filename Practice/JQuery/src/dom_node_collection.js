@@ -58,6 +58,15 @@ class NodeCollection {
     this.arrayOfEls.forEach( el => el.classList.remove(newClass));
     return this.arrayOfEls
   }
+
+  children() {
+    let listOfChildren = [];
+    this.arrayOfEls.forEach( el => {
+      let converted = Array.prototype.slice.call(el.children);
+      converted.forEach(el1 => listOfChildren.push(new DOMNodeCollections(el1)));
+    })
+    return listOfChildren;
+  }
 };
 
 module.exports = NodeCollection;
