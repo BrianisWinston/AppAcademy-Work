@@ -34,15 +34,15 @@ class NodeCollection {
   }
 
   attr(str) {
-    if (arguments.length === 1) {
-      return this.arrayOfEls[0].getAttribute(`${str}`);
-    } else if (str instanceof Object) {
+    if (str instanceof Object) {
       this.arrayOfEls.forEach(el => {
-        for(key in str) {
-            el.setAttribute(key, str[key]);
+        for (let k in str) {
+            el.setAttribute(k, str[k]);
         }
       })
       return this.arrayOfEls;
+    } else if (arguments.length === 1) {
+      return this.arrayOfEls[0].getAttribute(`${str}`);
     }
   }
 };
