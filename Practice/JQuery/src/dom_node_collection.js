@@ -36,6 +36,13 @@ class NodeCollection {
   attr(str) {
     if (arguments.length === 1) {
       return this.arrayOfEls[0].getAttribute(`${str}`);
+    } else if (str instanceof Object) {
+      this.arrayOfEls.forEach(el => {
+        for(key in str) {
+            el.setAttribute(key, str[key]);
+        }
+      })
+      return this.arrayOfEls;
     }
   }
 };
