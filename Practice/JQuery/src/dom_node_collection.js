@@ -43,13 +43,20 @@ class NodeCollection {
       return this.arrayOfEls;
     } else if (arguments.length === 1) {
       return this.arrayOfEls[0].getAttribute(`${str}`);
-    } else if (arguments.length === 2 && arguments[1] instanceof Function) {
-      this.arrayOfEls.forEach( el => el.setAttribute(str, arguments[1]));
-      return this.arrayOfEls;
     } else if (arguments.length === 2) {
       this.arrayOfEls.forEach( el => el.setAttribute(str, arguments[1]));
       return this.arrayOfEls;
     }
+  }
+
+  addClass(newClass) {
+    this.arrayOfEls.forEach( el => el.classList.add(newClass));
+    return this.arrayOfEls
+  }
+
+  removeClass(newClass) {
+    this.arrayOfEls.forEach( el => el.classList.remove(newClass));
+    return this.arrayOfEls
   }
 };
 
