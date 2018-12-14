@@ -22,6 +22,16 @@ class NodeCollection {
     let newArr = this.arrayOfEls.map( el => el.innerHTML = "");
     return newArr;
   }
+
+  append(str) {
+    if (str !== undefined) {
+      let newArr = this.arrayOfEls.map( el => {
+        el.innerHTML += str;
+        return el;
+      })
+      return newArr;
+    }
+  }
 };
 
 module.exports = NodeCollection;
