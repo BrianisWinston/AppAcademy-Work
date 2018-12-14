@@ -63,9 +63,21 @@ class NodeCollection {
     let listOfChildren = [];
     this.arrayOfEls.forEach( el => {
       let converted = Array.prototype.slice.call(el.children);
-      converted.forEach(el1 => listOfChildren.push(new DOMNodeCollections(el1)));
+      converted.forEach(el1 => listOfChildren.push(el1));
     })
-    return listOfChildren;
+    let hi = new NodeCollection(listOfChildren);
+    return hi;
+  }
+
+  parent() {
+    let listOfParents = [];
+    this.arrayOfEls.forEach(el => {
+      if (!listOfParents.includes(el.parentNode)) {
+        listOfParents.push(el.parentNode);
+      }
+    })
+    let newCollection = new NodeCollection(listOfParents);
+    return newCollection;
   }
 };
 
