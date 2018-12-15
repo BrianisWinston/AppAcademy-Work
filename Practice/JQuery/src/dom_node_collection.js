@@ -60,24 +60,32 @@ class NodeCollection {
   }
 
   children() {
-    let listOfChildren = [];
-    this.arrayOfEls.forEach( el => {
-      let converted = Array.prototype.slice.call(el.children);
-      converted.forEach(el1 => listOfChildren.push(el1));
-    })
-    let hi = new NodeCollection(listOfChildren);
-    return hi;
+    let cb = function() {
+        this.arrayOfEls.forEach( el => {
+          let converted = Array.prototype.slice.call(el.children);
+          converted.forEach(el1 => listOfEls.push(el1));
+        })
+      }.bind(this);
+    this.finder(cb)
   }
 
   parent() {
-    let listOfParents = [];
-    this.arrayOfEls.forEach(el => {
-      if (!listOfParents.includes(el.parentNode)) {
-        listOfParents.push(el.parentNode);
-      }
-    })
-    let newCollection = new NodeCollection(listOfParents);
-    return newCollection;
+    let cb = function() {
+        this.arrayOfEls.forEach(el => {
+          if (!listOfEls.includes(el.parentNode)) {
+            listOfEls.push(el.parentNode);
+          }
+        })
+      }.bind(this);
+      this.finder(cb)
+  }
+
+  finder(cb) {
+    let listOfEls = [1];
+    cb();
+    let newCollection = new NodeCollection(listOfEls);
+    // return newCollection;
+    return listOfEls;
   }
 };
 
