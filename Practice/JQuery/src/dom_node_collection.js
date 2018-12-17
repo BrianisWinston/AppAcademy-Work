@@ -70,20 +70,24 @@ class NodeCollection {
   }
 
   parent() {
-    let cb = function() {
+    let cb = function(listOfEls) {
         this.arrayOfEls.forEach(el => {
           if (!listOfEls.includes(el.parentNode)) {
             listOfEls.push(el.parentNode);
           }
         })
-      }.bind(this);
-      this.finder(cb)
+        return listOfEls
+      };
+      console.log(this);
+      console.log(cb);
+      let hi = this.finder.bind(this);
+      hi(cb);
   }
 
   finder(cb) {
-    let listOfEls = [1];
-    cb();
-    let newCollection = new NodeCollection(listOfEls);
+    let listOfEls = [];
+    let ye = cb(listOfEls);
+    let newCollection = new NodeCollection(ye);
     // return newCollection;
     return listOfEls;
   }
