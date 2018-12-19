@@ -60,13 +60,14 @@ class NodeCollection {
   }
 
   children() {
-    let cb = function() {
+    let cb = function(listOfEls) {
         this.arrayOfEls.forEach( el => {
           let converted = Array.prototype.slice.call(el.children);
           converted.forEach(el1 => listOfEls.push(el1));
         })
-      }.bind(this);
-    this.finder(cb)
+        return listOfEls
+      };
+    return this.finder(cb)
   }
 
   parent() {
@@ -78,18 +79,14 @@ class NodeCollection {
         })
         return listOfEls
       };
-      console.log(this);
-      console.log(cb);
-      let hi = this.finder.bind(this);
-      hi(cb);
+    return this.finder(cb);
   }
 
   finder(cb) {
     let listOfEls = [];
-    let ye = cb(listOfEls);
+    let ye = cb.call(this, listOfEls);
     let newCollection = new NodeCollection(ye);
-    // return newCollection;
-    return listOfEls;
+    return newCollection;
   }
 };
 
