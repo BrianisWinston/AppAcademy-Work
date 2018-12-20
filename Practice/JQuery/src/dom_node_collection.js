@@ -106,7 +106,17 @@ class NodeCollection {
   remove() {
     let newEls = this.empty();
     this.arrayOfEls.forEach(el => el.remove());
+    return this.arrayOfEls;
+  }
+
+  on(event, cb) {
+    this.arrayOfEls.forEach( el => el.addEventListener(event, cb.bind(this)));
+    return this.arrayOfEls;
   }
 };
+
+NodeCollection.prototype.on = () => {
+
+}
 
 module.exports = NodeCollection;
