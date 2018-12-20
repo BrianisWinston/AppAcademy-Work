@@ -92,7 +92,12 @@ class NodeCollection {
   find(el) {
     let childEls = [];
     this.arrayOfEls.forEach( el1 => {
-      childEls.push(el1.querySelectorAll(el));
+      let pickedEls = el1.querySelectorAll(el);
+      if (pickedEls.length !== 0) {
+        pickedEls.forEach( oneEl =>{
+          childEls.push(pickedEls);
+        })
+      }
     })
     let newCollection = new NodeCollection(childEls);
     return newCollection;
