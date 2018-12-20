@@ -111,16 +111,14 @@ class NodeCollection {
 
   on(event, cb) {
     this.arrayOfEls.map( el => {
-      el.addEventListener(event, cb.bind(this));
+      el.addEventListener(event, cb);
       el.cb = cb;
-      console.log(el.cb)
     });
     return this.arrayOfEls;
   }
 
   off(event) {
     this.arrayOfEls.map( el => {
-      console.log(el.cb);
       el.removeEventListener(event, el.cb);
     });
     return this.arrayOfEls;
