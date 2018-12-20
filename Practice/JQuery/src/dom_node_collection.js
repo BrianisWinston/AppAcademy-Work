@@ -95,12 +95,17 @@ class NodeCollection {
       let pickedEls = el1.querySelectorAll(el);
       if (pickedEls.length !== 0) {
         pickedEls.forEach( oneEl =>{
-          childEls.push(pickedEls);
+          childEls.push(oneEl);
         })
       }
     })
     let newCollection = new NodeCollection(childEls);
     return newCollection;
+  }
+
+  remove() {
+    let newEls = this.empty();
+    this.arrayOfEls.forEach(el => el.remove());
   }
 };
 
