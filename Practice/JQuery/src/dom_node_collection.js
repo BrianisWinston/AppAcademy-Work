@@ -110,13 +110,10 @@ class NodeCollection {
   }
 
   on(event, cb) {
-    this.arrayOfEls.forEach( el => el.addEventListener(event, cb.bind(this)));
+    this.arrayOfEls.map( el => el.addEventListener(event, cb.bind(this)));
     return this.arrayOfEls;
   }
 };
 
-NodeCollection.prototype.on = () => {
-
-}
 
 module.exports = NodeCollection;
