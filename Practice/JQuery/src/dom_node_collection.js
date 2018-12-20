@@ -1,7 +1,6 @@
 class NodeCollection {
   constructor(arrayHtml = []) {
     this.arrayOfEls = arrayHtml;
-    this.cbs = {};
   }
 
   elements() {
@@ -111,13 +110,19 @@ class NodeCollection {
   }
 
   on(event, cb) {
-    this.arrayOfEls.map( el => el.addEventListener(event, cb.bind(this)));
-    this.cbs[event] = cb;
+    this.arrayOfEls.map( el => {
+      el.addEventListener(event, cb.bind(this));
+      el.cb = cb;
+      console.log(el.cb)
+    });
     return this.arrayOfEls;
   }
 
   off(event) {
-    this.arrayOfEls.map( el => el.removeEventListener(event, this.cbs[event]));
+    this.arrayOfEls.map( el => {
+      console.log(el.cb);
+      el.removeEventListener(event, el.cb);
+    });
     return this.arrayOfEls;
   }
 };
