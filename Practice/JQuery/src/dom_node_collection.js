@@ -88,6 +88,15 @@ class NodeCollection {
     let newCollection = new NodeCollection(ye);
     return newCollection;
   }
+
+  find(el) {
+    let childEls = [];
+    this.arrayOfEls.forEach( el1 => {
+      childEls.push(el1.querySelectorAll(el));
+    })
+    let newCollection = new NodeCollection(childEls);
+    return newCollection;
+  }
 };
 
 module.exports = NodeCollection;
