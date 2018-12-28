@@ -1,7 +1,14 @@
 const DOMNodeCollections = require("./dom_node_collection.js");
 
 window.$l = function (hello) {
-  if (hello instanceof HTMLElement) {
+  if (hello instanceof Function) {
+    let queue = [];
+    queue.push(hello);
+    while (queue.length !== 0) {
+      let shifted = queue.shift();
+      document.addEventListener("DOMContentLoaded", shifted);
+    }
+  } else if (hello instanceof HTMLElement) {
     let elements = document.querySelectorAll(`${hello}`);
     let newEls = new DOMNodeCollections(elements);
     return newEls;
