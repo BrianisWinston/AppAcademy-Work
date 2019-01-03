@@ -27,6 +27,10 @@ $l.extend = (...objects) => {
   return merged;
 }
 
+$l.ajax = () => {
+  
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   callbackQueue.forEach( func => {
     func();
