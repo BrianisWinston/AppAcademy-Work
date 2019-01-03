@@ -17,6 +17,16 @@ window.$l = function (hello) {
   }
 };
 
+$l.extend = (...objects) => {
+  let merged = {};
+  objects.forEach( obj => {
+    for (let key in obj) {
+      merged[key] = obj[key]
+    }
+  });
+  return merged;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   callbackQueue.forEach( func => {
     func();
