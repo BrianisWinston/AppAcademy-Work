@@ -1,14 +1,10 @@
 const DOMNodeCollections = require("./dom_node_collection.js");
 
+const callbackQueue = [];
+
 window.$l = function (hello) {
   if (hello instanceof Function) {
-    let queue = [];
-    queue.push(hello);
-    while (queue.length !== 0) {
-      let shifted = queue.shift();
-      document.addEventListener("DOMContentLoaded", shifted());
-    }
-    return null;
+    callbackQueue.push(hello);
   } else if (hello instanceof HTMLElement) {
     let elements = document.querySelectorAll(`${hello}`);
     let newEls = new DOMNodeCollections(elements);
@@ -20,3 +16,10 @@ window.$l = function (hello) {
     return newEls;
   }
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  callbackQueue.forEach( func => {
+    func();
+    return func;
+  });
+})
